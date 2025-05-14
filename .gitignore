@@ -1,0 +1,8 @@
+*.o
+kernel
+kernel-*
+build/
+.vscode/
+*.swp
+*~
+.DS_Store
