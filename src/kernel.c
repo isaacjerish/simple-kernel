@@ -10,5 +10,13 @@ void kmain(void) {
         vid_memory[++i] = 0x0C;
         i++;
     }
+    i = 0;
+    while (string[j]) {
+        vid_memory[i] = string[j];
+        vid_memory[++i] = 0x0C;
+        j++;
+        i++;
+    }
+    return;
 
 }
