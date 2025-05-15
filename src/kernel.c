@@ -1,4 +1,5 @@
 #define IDT_SIZE 256
+extern void keyboard_handler(void);
 struct IDT_entry{
 	unsigned short int offset_lowerbits;
 	unsigned short int selector;
@@ -28,4 +29,12 @@ void kmain(void) {
     }
     return;
 
+}
+void idt_init(void) {
+    unsigned long int addy = (unsigned long int)&keyboard_handler;
+    IDT[0x21].selector = 0x08;
+    IDT[0x21].zero = 0x00;
+    IDT[0x21].type_attr = 0x8e;
+    IDT[0x21].offset_lowerbits = addy & 0x0000FFFF;
+    IDT[0x21].offset_higherbits = (addy >> 16) & 0x0000FFFF;
 }
