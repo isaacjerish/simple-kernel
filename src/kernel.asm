@@ -11,6 +11,10 @@
        
 start:  
        cli
+       mov esp, stack
        call kmain
        hlt
        
+       section .bss
+       resb 8000
+stack:  
