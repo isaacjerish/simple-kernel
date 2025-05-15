@@ -48,4 +48,8 @@ void idt_init(void) {
     write_port(0xA1, 0x01); 
     write_port(0x21, 0xFF); 
     write_port(0xA1, 0xFF);
+    unsigned long int base_addy = &IDT;
+    unsigned long int idt_ptr[2];
+    idt_ptr[1] = base_addy >> 16;
+    idt_ptr[0] = ((sizeof(struct IDT_entry) * IDT_SIZE)-1)  + ( (base_addy & 0xffff) << 16 );
 }
