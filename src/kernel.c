@@ -1,5 +1,6 @@
 #define IDT_SIZE 256
 extern void keyboard_handler(void);
+extern void write_port(unsigned short port, unsigned char data);
 struct IDT_entry{
 	unsigned short int offset_lowerbits;
 	unsigned short int selector;
@@ -37,4 +38,14 @@ void idt_init(void) {
     IDT[0x21].type_attr = 0x8e;
     IDT[0x21].offset_lowerbits = addy & 0x0000FFFF;
     IDT[0x21].offset_higherbits = (addy >> 16) & 0x0000FFFF;
+    write_port(0x20, 0x11); 
+    write_port(0xA0, 0x11); 
+    write_port(0x21, 0x20); 
+    write_port(0xA1, 0x28); 
+    write_port(0x21, 0x00);
+    write_port(0xA1, 0x00);
+    write_port(0x21, 0x01); 
+    write_port(0xA1, 0x01); 
+    write_port(0x21, 0xFF); 
+    write_port(0xA1, 0xFF);
 }
