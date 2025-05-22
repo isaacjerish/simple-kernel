@@ -1,7 +1,7 @@
 #define IDT_SIZE 256
 extern void keyboard_handler(void);
 extern void write_port(unsigned short port, unsigned char data);
-extern void load_idt(unsigned long int idt_ptr[2]);
+extern void load_idt(unsigned long int* idt_desc_ptr);
 struct IDT_entry{
 	unsigned short int offset_lowerbits;
 	unsigned short int selector;

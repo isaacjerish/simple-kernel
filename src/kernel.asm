@@ -26,8 +26,13 @@ write_port:
             mov al, [esp + 8]
             out dx, al
             ret
+load_idt:  
+            mov edx, [esp+4]
+            lidt [edx]
+            sti
+            ret 
             
             section .bss
             resb 8000
-load_idt:  
+            
 stack:  
