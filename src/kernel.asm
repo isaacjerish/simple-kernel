@@ -9,6 +9,7 @@
             global start
             global read_port
             global write_port
+            global load_idt
             extern kmain
             
 start:  
@@ -28,4 +29,5 @@ write_port:
             
             section .bss
             resb 8000
+load_idt:  
 stack:  
